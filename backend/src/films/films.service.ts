@@ -52,8 +52,6 @@ export class FilmsService {
   async getFilmSchedule(filmId: string): Promise<FilmScheduleResponseDto> {
     const film = await this.filmsRepository.findById(filmId);
 
-    console.log('Полученный фильм:', film); // Лог для проверки данных из БД
-
     if (!film) {
       throw new NotFoundException(`Фильм с id ${filmId} не найден`);
     }

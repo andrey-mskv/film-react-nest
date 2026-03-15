@@ -12,7 +12,7 @@ export class FilmSchedual {
   daytime: Date;
 
   @Prop({ required: true })
-  hall: string;
+  hall: number;
 
   @Prop({ required: true })
   rows: number;
