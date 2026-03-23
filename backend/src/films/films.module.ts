@@ -5,12 +5,11 @@ import { FilmsRepository } from '../repository/films.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Film } from './entity/films.entity';
 import { Schedule } from './entity/filmSchedule.entity';
-import { FilmImportService } from 'src/import-films/import-films.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Film, Schedule])],
   controllers: [FilmsController],
-  providers: [FilmsService, FilmsRepository, FilmImportService],
-  exports: [FilmsService, FilmsRepository, FilmImportService],
+  providers: [FilmsService, FilmsRepository],
+  exports: [FilmsService, FilmsRepository],
 })
 export class FilmsModule {}
