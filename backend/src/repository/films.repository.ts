@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose/dist/common/mongoose.decorators';
-import { Model } from 'mongoose';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Film } from '../films/entity/films.entity';
 import { Repository } from 'typeorm';

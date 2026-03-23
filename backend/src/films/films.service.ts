@@ -5,7 +5,6 @@ import {
   FilmScheduleDto,
   FilmScheduleResponseDto,
 } from './dto/filmSchedule.dto';
-import { FilmSchedual } from './schemas/filmSchedule.schema';
 import { Film } from './entity/films.entity';
 import { Schedule } from 'src/films/entity/filmSchedule.entity';
 

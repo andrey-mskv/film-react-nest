@@ -10,7 +10,6 @@ import { MongoDatabaseModule } from './mongo-database.module';
 export class DatabaseModule {
   static register(): DynamicModule {
     const config = configuration();
-    console.log('Кастомный конфиг: ', config);
 
     const databaseModule =
       config.database.driver === 'mongodb'

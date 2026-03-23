@@ -25,7 +25,7 @@ export class PostgresDatabaseModule {
               password: pg.password,
               database: pg.name,
               entities: [Film, Schedule],
-              synchronize: true,
+              synchronize: false,
             };
           },
         }),
