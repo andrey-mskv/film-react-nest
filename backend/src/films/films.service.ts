@@ -1,21 +1,22 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { FilmDocument } from './schemas/films.schema';
-import { FilmsRepository } from 'src/repository/films.repository';
+import { FilmsRepository } from '../repository/films.repository';
 import { FilmDto, FilmsResponseDto } from './dto/films.dto';
 import {
   FilmScheduleDto,
   FilmScheduleResponseDto,
-} from './dto/filmSchedule.gto';
+} from './dto/filmSchedule.dto';
 import { FilmSchedual } from './schemas/filmSchedule.schema';
+import { Film } from './entity/films.entity';
+import { Schedule } from 'src/films/entity/filmSchedule.entity';
 
 @Injectable()
 export class FilmsService {
   constructor(private readonly filmsRepository: FilmsRepository) {}
 
   // Маппинг данных из БД в DTO для ответа клиенту
-  private mapFilmToDto(film: FilmDocument): FilmDto {
+  private mapFilmToDto(film: Film): FilmDto {
     return {
-      id: film._id.toString(),
+      id: film.id.toString(),
       rating: film.rating,
       director: film.director,
       tags: film.tags,
@@ -37,7 +38,7 @@ export class FilmsService {
     };
   }
 
-  private mapScheduleToDto(schedule: FilmSchedual): FilmScheduleDto {
+  private mapScheduleToDto(schedule: Schedule): FilmScheduleDto {
     return {
       id: schedule.id,
       daytime: schedule.daytime,
