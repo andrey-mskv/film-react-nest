@@ -9,6 +9,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { FilmsModule } from './films/films.module';
 import { OrderModule } from './order/order.module';
 
+console.log(process.env.DATABASE_URL);
+
 @Module({
   imports: [
     ConfigModule.forRoot({
