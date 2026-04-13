@@ -4,12 +4,7 @@ import { FilmsService } from './films.service';
 
 describe('FilmsController (integration)', () => {
   let controller: FilmsController;
-  let service: FilmsService;
-
-  const mockService = {
-    findAll: jest.fn(),
-    getFilmSchedule: jest.fn(),
-  };
+  let service: jest.Mocked<FilmsService>;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
@@ -17,7 +12,10 @@ describe('FilmsController (integration)', () => {
       providers: [
         {
           provide: FilmsService,
-          useValue: mockService,
+          useValue: {
+            findAll: jest.fn(),
+            getFilmSchedule: jest.fn(),
+          },
         },
       ],
     }).compile();
@@ -46,14 +44,14 @@ describe('FilmsController (integration)', () => {
         },
       ];
 
-      mockService.findAll.mockResolvedValue({
+      service.findAll.mockResolvedValue({
         items: mockFilms,
         total: mockFilms.length,
       });
 
       const result = await controller.getFilms();
 
-      expect(mockService.findAll).toHaveBeenCalled();
+      expect(service.findAll).toHaveBeenCalled();
       expect(result).toEqual({
         items: mockFilms,
         total: mockFilms.length,
@@ -80,11 +78,11 @@ describe('FilmsController (integration)', () => {
         total: 1,
       };
 
-      mockService.getFilmSchedule.mockResolvedValue(mockResponse);
+      service.getFilmSchedule.mockResolvedValue(mockResponse);
 
       const result = await controller.getFilmSchedule(mockFilmId);
 
-      expect(mockService.getFilmSchedule).toHaveBeenCalledWith(mockFilmId);
+      expect(service.getFilmSchedule).toHaveBeenCalledWith(mockFilmId);
       expect(result).toEqual(mockResponse);
     });
   });

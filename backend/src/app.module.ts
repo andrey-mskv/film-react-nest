@@ -9,7 +9,6 @@ import { DevLogger } from './loggers/devLogger.service';
 import { JsonLogger } from './loggers/jsonLogger.sevice';
 import { TskvLogger } from './loggers/tskvLogger.service';
 
-
 @Module({
   imports: [
     AppConfigModule,

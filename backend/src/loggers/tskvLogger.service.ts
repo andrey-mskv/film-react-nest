@@ -20,7 +20,7 @@ export class TskvLogger implements LoggerService {
     return (
       'tskv\t' +
       Object.entries(base)
-        .filter(([_, v]) => v !== undefined)
+        .filter(([, v]) => v !== undefined)
         .map(([k, v]) => `${k}=${this.escape(v)}`)
         .join('\t')
     );
