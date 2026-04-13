@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { Schedule } from './filmSchedule.entity';
 
-@Entity()
+@Entity('film')
 export class Film {
   @PrimaryColumn()
   id: string;

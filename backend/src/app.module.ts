@@ -5,6 +5,10 @@ import { FilmsModule } from './films/films.module';
 import { OrderModule } from './order/order.module';
 import { DatabaseModule } from './database/database.module';
 import { AppConfigModule } from './config/config.module';
+import { DevLogger } from './loggers/devLogger.service';
+import { JsonLogger } from './loggers/jsonLogger.sevice';
+import { TskvLogger } from './loggers/tskvLogger.service';
+
 
 @Module({
   imports: [
@@ -17,5 +21,7 @@ import { AppConfigModule } from './config/config.module';
       serveRoot: '/content/afisha',
     }),
   ],
+  providers: [DevLogger, JsonLogger, TskvLogger],
+  exports: [DevLogger, JsonLogger, TskvLogger],
 })
 export class AppModule {}
