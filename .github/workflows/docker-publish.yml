@@ -40,8 +40,8 @@ jobs:
             cache-from: type=gha
             cache-to: type=gha,mode=max
             tags: |
-              ${{ env.REGISTRY }}/${{ github.repository_owner }}/backend:latest
-              ${{ env.REGISTRY }}/${{ github.repository_owner }}/backend:${{ github.sha }}
+              ${{ env.REGISTRY }}/${{ github.repository_owner }}/film-react-nest-backend:latest
+              ${{ env.REGISTRY }}/${{ github.repository_owner }}/film-react-nest-backend:${{ github.sha }}
 
         # FRONTEND IMAGE
         - name: Build and push frontend
@@ -52,5 +52,5 @@ jobs:
             cache-from: type=gha
             cache-to: type=gha,mode=max
             tags: |
-              ${{ env.REGISTRY }}/${{ github.repository_owner }}/frontend:latest
-              ${{ env.REGISTRY }}/${{ github.repository_owner }}/frontend:${{ github.sha }}
+              ${{ env.REGISTRY }}/${{ github.repository_owner }}/film-react-nest-frontend:latest
+              ${{ env.REGISTRY }}/${{ github.repository_owner }}/film-react-nest-frontend:${{ github.sha }}

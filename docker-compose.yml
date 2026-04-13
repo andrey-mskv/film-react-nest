@@ -83,7 +83,7 @@ services:
   nginx:
     build:
       context: ./nginx
-    image: ghcr.io/${GHCR_OWNER:-your-github-username}/film-react-nest-nginx:${IMAGE_TAG:-latest}
+    # image: ghcr.io/${GHCR_OWNER:-your-github-username}/film-react-nest-nginx:${IMAGE_TAG:-latest}
     container_name: nginx
     restart: unless-stopped
     ports:
