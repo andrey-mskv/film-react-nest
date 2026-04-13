@@ -54,3 +54,15 @@ jobs:
             tags: |
               ${{ env.REGISTRY }}/${{ github.repository_owner }}/film-react-nest-frontend:latest
               ${{ env.REGISTRY }}/${{ github.repository_owner }}/film-react-nest-frontend:${{ github.sha }}
+
+        # NGINX IMAGE
+        - name: Build and push nginx
+          uses: docker/build-push-action@v5
+          with:
+            context: ./nginx
+            push: true
+            cache-from: type=gha
+            cache-to: type=gha,mode=max
+            tags: |
+              ${{ env.REGISTRY }}/${{ github.repository_owner }}/film-react-nest-nginx:latest
+              ${{ env.REGISTRY }}/${{ github.repository_owner }}/film-react-nest-nginx:${{ github.sha }}
