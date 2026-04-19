@@ -7,13 +7,13 @@ services:
     container_name: postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${DATABASE_NAME:-afisha}
-      POSTGRES_USER: ${DATABASE_USERNAME:-film_user}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-film_pass}
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME:-film_user}"]
+      test: ["CMD-SHELL","pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME}"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -47,6 +47,7 @@ services:
     image: ghcr.io/${GHCR_OWNER:-your-github-username}/film-react-nest-backend:${IMAGE_TAG:-latest}
     container_name: backend
     restart: unless-stopped
+
     environment:
       DATABASE_DRIVER: ${DATABASE_DRIVER}
       DATABASE_HOST: ${DATABASE_HOST}
@@ -54,11 +55,21 @@ services:
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DATABASE_NAME: ${DATABASE_NAME}
+
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
     depends_on:
         postgres:
           condition: service_healthy
+
     ports:
       - "${PORT:-3000}:3000"
+
     networks:
       - app
 
@@ -91,8 +102,10 @@ services:
     volumes:
       - frontend_dist:/usr/share/nginx/html
     depends_on:
-      - backend
-      - frontend
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_started
     networks:
       - app
 

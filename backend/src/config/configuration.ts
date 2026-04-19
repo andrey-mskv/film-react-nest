@@ -18,6 +18,8 @@ type PostgresConfig = {
 
 type DatabaseConfig = MongoConfig | PostgresConfig;
 
+console.log('Проверка DATABASE_DRIVER:', process.env.DATABASE_DRIVER);
+
 export default (): { port: number; database: DatabaseConfig } => {
   const driver = process.env.DATABASE_DRIVER as 'mongodb' | 'postgres';
 
