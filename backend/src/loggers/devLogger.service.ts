@@ -3,7 +3,6 @@ import { ConsoleLogger, Injectable } from '@nestjs/common';
 @Injectable()
 export class DevLogger extends ConsoleLogger {
   private readonly logger = new ConsoleLogger(DevLogger.name, {
-    prefix: 'FilmApp',
     logLevels: ['error', 'log'],
   });
 
