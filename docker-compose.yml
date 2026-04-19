@@ -48,12 +48,12 @@ services:
     container_name: backend
     restart: unless-stopped
     environment:
-      DATABASE_DRIVER: ${DATABASE_DRIVER:-postgres}
-      DATABASE_HOST: ${DATABASE_HOST:-postgres}
-      DATABASE_PORT: ${DATABASE_PORT:-5432}
-      DATABASE_USERNAME: ${DATABASE_USERNAME:-film_user}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-film_pass}
-      DATABASE_NAME: ${DATABASE_NAME:-afisha}
+      DATABASE_DRIVER: ${DATABASE_DRIVER}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_NAME: ${DATABASE_NAME}
     depends_on:
         postgres:
           condition: service_healthy
