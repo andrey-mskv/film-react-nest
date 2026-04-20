@@ -4,11 +4,12 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { FilmsRepository } from 'src/repository/films.repository';
+import { FilmsRepository } from '../repository/films.repository';
 import { OrderResponseDto } from './dto/respose-order.dto';
 import { randomUUID } from 'crypto';
 import { OrderItemDto } from './dto/order.dto';
-import { FilmDocument } from 'src/films/schemas/films.schema';
+
+import { Film } from '../films/entity/films.entity';
 
 @Injectable()
 export class OrderService {
@@ -49,9 +50,9 @@ export class OrderService {
   // На входе - DTO с данными заказа, на выходе - Map <key: id фильма, value: данные из БД>
   private async checkSeatsInDb(
     dto: CreateOrderDto,
-  ): Promise<Map<string, FilmDocument>> {
+  ): Promise<Map<string, Film>> {
     // Кэш для хранения информации о фильмах, чтобы избежать повторных запросов к базе данных
-    const filmsCache = new Map<string, FilmDocument>();
+    const filmsCache = new Map<string, Film>();
 
     // Проверяем наличие фильма, сеанса и свободных мест в базе данных для каждого билета в заказе
     for (const ticket of dto.tickets) {
@@ -88,7 +89,7 @@ export class OrderService {
 
   private async saveOrder(
     dto: CreateOrderDto,
-    filmsCache: Map<string, FilmDocument>,
+    filmsCache: Map<string, Film>,
   ): Promise<void> {
     // Хранилище уникальных id фильмов, которые были обновлены.
     const updatedFilms = new Set<string>();
