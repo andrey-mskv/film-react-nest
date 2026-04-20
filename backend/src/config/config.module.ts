@@ -12,7 +12,7 @@ import { AppConfigService } from './config.service';
       load: [configuration],
       validationSchema,
       cache: true,
-      envFilePath: '.env',
+      // envFilePath: '.env', --- IGNORE ---
     }),
   ],
   providers: [AppConfigService],

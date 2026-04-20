@@ -26,9 +26,11 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
+
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@admin.com}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      
     ports:
       - "${PGADMIN_LISTEN_PORT:-8080}:80"
     volumes:

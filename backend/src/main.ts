@@ -4,7 +4,8 @@ import 'dotenv/config';
 import { ValidationPipe } from '@nestjs/common';
 import { getLogger } from './loggers/logger.factory';
 
-console.log('проверяем DB NAME:', process.env.DATABASE_NAME);
+console.log('Проверка DB NAME:', process.env.DATABASE_NAME);
+console.log('Проверка в main DB DRIVER:', process.env.DATABASE_DRIVER);
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
