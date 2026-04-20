@@ -10,7 +10,7 @@ import { AppConfigService } from './config.service';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
-      validationSchema,
+      // validationSchema, --- IGNORE ---
       cache: true,
       // envFilePath: '.env', --- IGNORE ---
     }),
