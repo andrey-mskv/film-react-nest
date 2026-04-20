@@ -21,10 +21,11 @@ type DatabaseConfig = MongoConfig | PostgresConfig;
 console.log('Проверка DATABASE_DRIVER в configuration:', process.env.DATABASE_DRIVER);
 
 export default (): { port: number; database: DatabaseConfig } => {
+  
   const driver = process.env.DATABASE_DRIVER as 'mongodb' | 'postgres';
 
   if (!driver) {
-    console.error('Ошибка в ENV:', process.env);
+    console.error('Окружение в ENV:', process.env);
     throw new Error('DATABASE_DRIVER is not defined');
   }
 

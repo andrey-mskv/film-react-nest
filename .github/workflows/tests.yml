@@ -7,6 +7,7 @@ on:
     tags:
       - '**'
 env:
+  DATABASE_DRIVER: postgres
   DIR_TESTS: /tmp/tests-back-to-the-film
   REP_TESTS: https://github.com/Yandex-Practicum/tests-migrate-db.git
 jobs:
